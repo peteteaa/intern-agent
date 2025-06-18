@@ -1,0 +1,74 @@
+Prompt 1
+Build a chatbot interface similar to ChatGPT.
+
+The main message input should be a text area named 'var1' with a placeholder that says "Var1".
+
+Make sure there are smaller inputs for these fields: field name: 'location' (labeled "Location"), field name: 'qualifications' (labeled "Qualifications"), field name: 'job' (labeled "Job"). Job and location should be two drop down boxes, with job alternating between job and intern, and location being major cities around the world. also include a "other" tab where the user can specify a city
+These inputs are required to be filled out before the user can send their first message. They are not required for subsequent messages.
+
+When the user types Enter on their first message, call POST https://agents.toolhouse.ai/d213c6b4-8308-4596-a436-8c41f3d2a529 with a JSON body that looks like this: { "vars": { "field_name": "value for this field", "other_field_name", "value for this field", ... } }.
+
+The request will return an X-Toolhouse-Run-ID header. Save it in the runId variable.
+
+On any subsequent user message, call PUT https://agents.toolhouse.ai/d213c6b4-8308-4596-a436-8c41f3d2a529/runId with this JSON body: { "message": "the user message from var1" }.
+
+Note that both endpoints will stream the response back to you in chunks, so you must show each chunk as it arrives. The streaming response will be in Markdown, so make sure to format so it displays nicely. seperate the markdown chunks into different selectable chunks the user can select and add to a list. var2 should be {} by default
+Lovable
+20:07 on Jun 17, 2025
+
+Prompt 2
+   add a reactive landing page, where the user will select their location, qualifications, and job before going to the ai assitant. make the second page more reactive, and give the whole project a dark and light mode
+
+
+
+Prompt 3
+the json for the first post should be formatted as "{"vars":{"var1":"CS","location":"San Francisco","qualifications":"Batchelors Degree","job":"internships"}}"
+Done
+Variables
+var1
+CS
+location
+San Francisco
+qualifications
+Batchelors Degree
+job
+}, remove var2
+Lovable
+20:29 on Jun 17, 2025
+
+Prompt 4
+Here are some upcoming internship opportunities in the New York area for Computer Science students with a Bachelor's degree:
+
+Campus Undergraduate - 2025 Technology Software Engineer Summer Internship
+Company: American Express
+Location: New York, NY
+Description: Work on building global scale software with a host of tools and frameworks. Internship project areas range from machine learning to full stack web applications.
+Qualifications: Currently enrolled in a Bachelor’s degree program in Computer Science or related field, graduation date between December 2025 and June 2026.
+Apply Here
+(General Hire) Software Engineer Intern (USDS)- 2025 Summer (BS/MS)
+Company: TikTok
+Location: New York, NY
+Description: Focus on enhancing user experience through strong data security and privacy protections.
+Qualifications: Currently pursuing a Bachelor's or Master's in Computer Science or related technical discipline.
+Apply Here
+Software Engineer Intern
+Company: TransPerfect
+Location: New York, NY
+Description: Perform responsive software development and integration within an agile development process.
+Qualifications: Bachelor's degree in Computer Science or related field, zero to two years of experience in software development.
+Apply Here
+Academic Internship Specialist (HEOa) - Computer Science Department, School of Arts & Sciences
+Company: CUNY Hunter College
+Location: New York, NY
+Description: Identify career opportunities and grow hiring pipelines for Hunter College Computer Science students.
+Qualifications: Bachelor’s degree and four years of professional work experience.
+Apply Here
+Summer College Intern-IT Data Scientist
+Company: New York City Department of Correction
+Location: New York, NY
+Description: Help extract insights from large datasets and drive data-driven decision-making.
+Qualifications: Bachelor’s or Master’s degree in Data Science, Computer Science, Mathematics, or a related field.
+Apply Here
+Would you like me to email you this list of jobs? this is an example of the message returned by the chatbot. 
+
+split the job listings into selectable chunks that the user can mark as interested or not interested. in subsequent PUT calls, make sure to specify which jobs the user is interested or not interested in
